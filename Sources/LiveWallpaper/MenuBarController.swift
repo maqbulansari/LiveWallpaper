@@ -92,6 +92,16 @@ final class MenuBarController {
         scalingItem.submenu = scalingMenu
         menu.addItem(scalingItem)
 
+        // Sync Lock Screen Wallpaper (Poster Frame)
+        let lockSyncItem = NSMenuItem(
+            title: "Sync Lock Screen Wallpaper",
+            action: #selector(toggleSyncLockScreen),
+            keyEquivalent: "l"
+        )
+        lockSyncItem.target = self
+        lockSyncItem.state = manager.syncLockScreen ? .on : .off
+        menu.addItem(lockSyncItem)
+
         menu.addItem(NSMenuItem.separator())
 
         // Open Wallpapers Folder
@@ -136,6 +146,10 @@ final class MenuBarController {
 
     @objc private func toggleMute() {
         manager.toggleMute()
+    }
+
+    @objc private func toggleSyncLockScreen() {
+        manager.toggleSyncLockScreen()
     }
 
     @objc private func setAspectFill() {
